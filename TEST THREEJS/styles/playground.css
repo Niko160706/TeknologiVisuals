@@ -1,0 +1,294 @@
+/* ================================================== */
+/* FILE CSS UNTUK PLAYGROUND (Navbar, Panel & Aksi)   */
+/* ================================================== */
+
+/* Navigasi Playground (Tidak Berubah) */
+.playground-nav {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(31, 41, 55, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+.nav-btn {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.nav-btn:hover {
+    background: var(--color-border);
+    color: var(--color-text);
+}
+.nav-btn.active {
+    background: var(--color-accent);
+    color: white;
+}
+.nav-btn:disabled {
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+/* GAYA BARU: Panel Informasi Umum (Kanan Atas) */
+.info-panel {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background-color: rgba(31, 41, 55, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    z-index: 10;
+    display: flex; /* Mengatur agar konten (kolom vektor) berjajar horizontal */
+    gap: 24px;   /* Jarak antar kolom vektor */
+    max-width: 90vw;
+    overflow-x: auto; /* Memungkinkan scroll jika terlalu banyak vektor */
+}
+.info-panel h3 {
+    margin: 0 0 16px 0;
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+/* GAYA BARU: Notasi Vektor Kolom */
+.vector-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.vector-column h4 {
+    margin: 0 0 8px 0;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1rem;
+}
+.vector-values {
+    border-left: 2px solid var(--color-text-secondary);
+    border-right: 2px solid var(--color-text-secondary);
+    padding: 8px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.2);
+}
+.vector-magnitude {
+    margin-top: 12px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    font-weight: 500;
+}
+.vector-magnitude span {
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* GAYA BARU: Bilah Aksi (Bawah Tengah) */
+.action-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(31, 41, 55, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+.action-bar button {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    padding: 8px 16px;
+    border: none;
+    background-color: var(--color-surface);
+    color: var(--color-text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.action-bar button:hover {
+    background: var(--color-border);
+    color: var(--color-text);
+}
+
+/* GAYA LAMA YANG MASIH RELEVAN (Untuk Slider Fungsi Kuadrat) */
+.slider-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.slider-group label {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+.slider-group input[type="range"] {
+    width: 100%;
+}
+/* GAYA BARU: Navigasi Sub-Playground (Kiri) */
+.sub-nav {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    background-color: rgba(31, 41, 55, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+.sub-nav-btn, .sub-nav-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px; /* Corner lebih melengkung sesuai permintaan */
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sub-nav-btn {
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.sub-nav-btn:hover {
+    background: var(--color-border);
+    color: var(--color-text);
+}
+.sub-nav-btn.active {
+    background: var(--color-accent);
+    color: white;
+}
+.sub-nav-placeholder {
+    background-color: rgba(0,0,0,0.2);
+    border: 1px dashed var(--color-border);
+}
+/* GAYA BARU: Untuk Tampilan Nilai Matriks */
+.matrix-display-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 8px 0;
+}
+.matrix-display-container h4 {
+    margin: 0 0 8px 0;
+    font-family: var(--font-primary);
+    color: var(--color-text-secondary);
+}
+.matrix-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 60px 60px;
+    grid-template-rows: 40px 40px;
+    gap: 12px;
+    text-align: center;
+}
+.matrix-grid span {
+    font-size: 1.2rem;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.matrix-brackets {
+    font-size: 5rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--color-text-secondary);
+}
+
+.determinant-display {
+    margin-top: 12px;
+    font-size: 1.1rem;
+    font-family: var(--font-primary);
+    /* Warna latar biru muda transparan agar menonjol */
+    background-color: rgba(59, 130, 246, 0.3);
+    border: 1px solid var(--color-accent);
+    padding: 8px 16px;
+    border-radius: 8px;
+    width: fit-content;
+}
+.determinant-display span {
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+}
+
+.equation-display {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgba(0,0,0,0.2);
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+}
+.instruction-text {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin: 0 0 16px 0 !important; /* Override margin default */
+    padding: 0 !important;
+    justify-content: center !important;
+}
+
+/* GAYA BARU: untuk Dasbor di Panel Turunan */
+.dashboard-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    background-color: rgba(0,0,0,0.2);
+    padding: 12px;
+    border-radius: 8px;
+}
+.dashboard-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dashboard-label {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+.dashboard-value {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+}

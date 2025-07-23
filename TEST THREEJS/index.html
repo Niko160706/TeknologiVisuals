@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Visuals - Interactive Playground</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500&f[]=inter@500,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/playground.css">
+</head>
+<body>
+    <nav class="playground-nav">
+        <button class="nav-btn" data-playground="vector">Vector</button>
+        <button class="nav-btn" data-playground="function">Fungsi</button>
+        <button class="nav-btn" data-playground="calculus">Kalkulus</button>
+    </nav>
+
+    <!--VEKTOR PLAYGROUND-->
+
+    <nav id="sub-nav-vector" class="sub-nav" style="display: none;">
+        <button class="sub-nav-btn" data-sub-playground="operations" title="Operasi Vektor">OV</button>
+        <button class="sub-nav-btn" data-sub-playground="transform" title="Transformasi Linear">TL</button>
+        <div class="sub-nav-placeholder"></div>
+        <div class="sub-nav-placeholder"></div>
+    </nav>
+    <div id="vector-ops-panel" class="info-panel" style="display: none;">
+        </div>
+    <div id="vector-action-bar" class="action-bar" style="display: none;">
+        <button id="add-vector-btn">+ Tambah Vektor</button>
+        <button id="delete-vector-btn" style="display: none;">- Hapus Vektor</button>
+        <button id="sum-vectors-btn" style="display: none;">Jumlahkan Vektor</button>
+        <button id="mode-toggle-btn">Switch to 2D</button>
+        
+    <div id="matrix-transform-panel" class="info-panel" style="display: none; width: 320px; flex-direction: column;">
+    </div>
+    </div>
+     <div id="matrix-transform-panel" class="info-panel" style="display: none; width: 320px; flex-direction: column;">
+        <h3>Transformasi Linear 2D</h3>
+        <div class="matrix-display-container">
+            <h4>Matriks (M)</h4>
+            <div class="matrix-input-container">
+                <div class="matrix-brackets left">[</div>
+                <div class="matrix-grid">
+                    <span id="mat-00">1.00</span><span id="mat-01">0.00</span>
+                    <span id="mat-10">0.00</span><span id="mat-11">1.00</span>
+                </div>
+                <div class="matrix-brackets right">]</div>
+            </div>
+        </div>
+        <div class="determinant-display">
+            det(M) = <span id="determinant-value">1.00</span>
+        </div>
+        <hr style="width: 100%; border-color: var(--color-border); margin: 16px 0;">
+        <div class="slider-group">
+            <label>Rotasi: <span id="rotation-value">0</span>°</label>
+            <input id="rotation-slider" type="range" min="0" max="360" value="0" step="1">
+            <label>Skala X: <span id="scale-x-value">1.0</span></label>
+            <input id="scale-x-slider" type="range" min="-4" max="4" value="1" step="0.1">
+            <label>Skala Y: <span id="scale-y-value">1.0</span></label>
+            <input id="scale-y-slider" type="range" min="-4" max="4" value="1" step="0.1">
+            <label>Geser (Shear) X: <span id="shear-x-value">0.0</span></label>
+            <input id="shear-x-slider" type="range" min="-2" max="2" value="0" step="0.05">
+            <label>Geser (Shear) Y: <span id="shear-y-value">0.0</span></label>
+            <input id="shear-y-slider" type="range" min="-2" max="2" value="0" step="0.05">
+        </div>
+    </div>
+
+
+
+    <!--FUNGSI PLAYGROUND-->
+    <nav id="sub-nav-function" class="sub-nav" style="display: none;">
+        <button class="sub-nav-btn" data-sub-playground="linear" title="Fungsi Linear">L</button>
+        <button class="sub-nav-btn" data-sub-playground="quadratic" title="Fungsi Kuadrat">K</button>
+         <button class="sub-nav-btn" data-sub-playground="polynomial" title="Fungsi Polinomial">P</button>
+        <div class="sub-nav-placeholder"></div>
+        <div class="sub-nav-placeholder"></div>
+    </nav>
+    
+    
+    <div id="quadratic-ui" class="info-panel" style="display: none; width: 280px;">
+        <h3>Fungsi Kuadrat: y = ax² + bx + c</h3>
+        <div class="slider-group">
+            <label for="slider-a">a = <span id="slider-a-value">1</span></label>
+            <input id="slider-a" type="range" min="-5" max="5" value="1" step="0.1">
+            <label for="slider-b">b = <span id="slider-b-value">0</span></label>
+            <input id="slider-b" type="range" min="-10" max="10" value="0" step="0.1">
+            <label for="slider-c">c = <span id="slider-c-value">0</span></label>
+            <input id="slider-c" type="range" min="-10" max="10" value="0" step="0.1">
+        </div>
+    </div>
+
+    <div id="linear-ui" class="info-panel" style="display: none; width: 280px; flex-direction: column;">
+        <h3>Fungsi Linear: y = mx + c</h3>
+        <p class="equation-display">
+            m = <span id="linear-m-value">1.00</span> | 
+            c = <span id="linear-c-value">0.00</span>
+        </p>
+        <hr style="width: 100%; border-color: var(--color-border); margin: 8px 0 16px;">
+        <div class="slider-group">
+            <label>Perubahan Y (Δy): <span id="delta-y-value">2.0</span></label>
+            <input id="delta-y-slider" type="range" min="-10" max="10" value="2" step="0.1">
+            <label>Perubahan X (Δx): <span id="delta-x-value">2.0</span></label>
+            <input id="delta-x-slider" type="range" min="0.1" max="10" value="2" step="0.1">
+            <label>Titik Potong (c): <span id="linear-c-slider-value">0.0</span></label>
+            <input id="linear-c-slider" type="range" min="-10" max="10" value="0" step="0.1">
+        </div>
+    </div>
+
+    <div id="polynomial-ui" class="info-panel" style="display: none; width: 320px; flex-direction: column;">
+        <h3>Fungsi Polinomial (Grafik-ke-Fungsi)</h3>
+        <p class="instruction-text">Klik pada grid untuk menambah titik kontrol. Geser titik untuk mengubah bentuk kurva.</p>
+        <div class="slider-group">
+            <label>Derajat Polinomial: <span id="poly-degree-value">1</span></label>
+            <input id="poly-degree-slider" type="range" min="1" max="5" value="1" step="1">
+        </div>
+        <p id="polynomial-equation" class="equation-display" style="margin-top: 16px;">y = 0</p>
+        <div class="determinant-display" style="margin-top: 10px;">
+        Total Error (SSE) = <span id="sse-value">0.00</span>
+    </div>
+        <div class="panel-controls" style="margin-top: 16px;">
+            <button id="clear-points-btn">Hapus Semua Titik</button>
+        </div>
+    </div>
+    
+
+
+<!--KALKULUS PLAYGROUND-->
+     <!--<nav id="sub-nav-calculus" class="sub-nav" style="display: none;">
+        <button class="sub-nav-btn active" data-sub-playground="derivative" title="Turunan (Derivatif)">T</button>
+        <div class="sub-nav-placeholder"></div>
+        <div class="sub-nav-placeholder"></div>
+    </nav>
+
+    <div id="derivative-panel" class="info-panel" style="display: none; width: 300px; flex-direction: column;">
+        <h3>Turunan (Derivatif)</h3>
+        <div class="slider-group">
+            <label for="function-select">Pilih Fungsi:</label>
+            <select id="function-select" class="dropdown-select">
+                <option value="x_squared">y = x²</option>
+                <option value="sin_x">y = sin(x)</option>
+                <option value="x_cubed">y = x³</option>
+            </select>
+        </div>
+        <hr style="width: 100%; border-color: var(--color-border); margin: 16px 0;">
+        <div id="derivative-info" class="equation-display">
+            <p>Posisi: x = <span id="current-x-value">0.00</span></p>
+            <p>Gradien (dy/dx) = <span id="gradient-value">0.00</span></p>
+        </div>
+    </div>-->
+
+     <nav id="sub-nav-calculus" class="sub-nav" style="display: none;">
+        <button class="sub-nav-btn active" data-sub-playground="derivative" title="Turunan (Derivatif)">T</button>
+        <div class="sub-nav-placeholder"></div>
+        <div class="sub-nav-placeholder"></div>
+    </nav>
+<div id="derivative-panel" class="info-panel" style="display: none; width: 300px; flex-direction: column;">
+    <h3>Turunan (Derivatif)</h3>
+    <div class="slider-group">
+        <label for="function-select">Pilih Lintasan (Fungsi):</label>
+        <select id="function-select" class="dropdown-select">
+            <option value="x_squared">y = x²</option>
+            <option value="sin_x">y = sin(x)</option>
+            <option value="x_cubed">y = x³ - 3x</option>
+        </select>
+    </div>
+    <hr style="width: 100%; border-color: var(--color-border); margin: 16px 0;">
+
+    <div class="dashboard-display">
+        <div class="dashboard-item">
+            <span class="dashboard-label">Posisi (x)</span>
+            <span class="dashboard-value" id="current-x-value">0.00</span>
+        </div>
+        <div class="dashboard-item">
+            <span class="dashboard-label">Ketinggian (y)</span>
+            <span class="dashboard-value" id="current-y-value">0.00</span>
+        </div>
+        <div class="dashboard-item">
+            <span class="dashboard-label">Kecepatan (f')</span>
+            <span class="dashboard-value" id="gradient-value">0.00</span>
+        </div>
+        <div class="dashboard-item">
+            <span class="dashboard-label">Percepatan (f'')</span>
+            <span class="dashboard-value" id="acceleration-value">0.00</span>
+        </div>
+        <div id="derivative-info" class="equation-display">
+             <p class="derivative-eq">f'(x) = <span id="first-derivative-eq">2x</span></p>
+             <p class="derivative-eq">f''(x) = <span id="second-derivative-eq">2</span></p>
+        </div>
+    </div>
+
+    <div class="panel-controls" style="margin-top: 16px; display: flex; gap: 8px; justify-content: center;">
+        <button id="reset-btn">Reset</button>
+        <button id="play-pause-btn" style="background-color: var(--color-accent); color: white;">Play</button>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/DragControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/polynomial@1.5.0/polynomial.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+    
+    
+    <script type="module" src="src/main/main.js"></script> 
+</body>
+</html>
