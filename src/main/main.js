@@ -11,6 +11,7 @@ const chapters = {
 };
 let activeChapterKey = null;
 
+
 function main() {
     world.init();
     Object.values(chapters).forEach(c => c.chapter.init(world));
@@ -21,15 +22,17 @@ function main() {
 
 function switchChapter(chapterName) {
     if (activeChapterKey === chapterName) return;
+
     if (activeChapterKey) {
         const oldChapter = chapters[activeChapterKey];
-        ui.togglePanel(oldChapter.navId, false);
+        ui.togglePanel(oldChapter.navId, false); // Sembunyikan sub-nav lama
         oldChapter.chapter.deactivate();
     }
+    
     const newChapter = chapters[chapterName];
     if (newChapter) {
         activeChapterKey = chapterName;
-        ui.togglePanel(newChapter.navId, true);
+        ui.togglePanel(newChapter.navId, true); // Tampilkan sub-nav baru
         newChapter.chapter.activate();
         ui.setActiveButton(chapterName);
     }
