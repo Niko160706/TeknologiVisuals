@@ -2,22 +2,12 @@ import { BasicVectorOps } from './BasicVectorOps.js';
 import { LinearTransform } from './LinearTransform.js';
 import { ui } from '../../core/ui.js';
 
-// PERBAIKAN UTAMA: Setiap sub-playground sekarang adalah objek dengan semua data yang dibutuhkan.
 const subPlaygrounds = {
-    operations: { 
-        module: BasicVectorOps,  
-        panelId: 'vector-ops-panel',   
-        actionBarId: 'vector-action-bar' 
-    },
-    transform:  { 
-        module: LinearTransform, 
-        panelId: 'matrix-transform-panel', 
-        actionBarId: null 
-    }
+    operations: { module: BasicVectorOps,  panelId: 'vector-ops-panel',   actionBarId: 'vector-action-bar' },
+    transform:  { module: LinearTransform, panelId: 'matrix-transform-panel', actionBarId: null }
 };
 let activeSubPlaygroundKey = null;
 
-// Fungsi ini sekarang membaca dari struktur data yang baru dan lebih andal.
 function switchSubPlayground(name) {
     if (activeSubPlaygroundKey === name) return;
 
@@ -47,18 +37,17 @@ function switchSubPlayground(name) {
 
 export const VectorChapter = {
     init(world) {
-        // Kita tidak lagi menempelkan properti di sini
         Object.values(subPlaygrounds).forEach(subData => subData.module.init(world));
-        
         document.querySelectorAll('#sub-nav-vector .sub-nav-btn').forEach(btn => {
             btn.addEventListener('click', () => switchSubPlayground(btn.dataset.subPlayground));
         });
     },
     activate() {
-        document.getElementById('sub-nav-vector').style.display = 'flex';
+        // Selalu mulai dari 'operations' saat chapter ini diaktifkan
         switchSubPlayground('operations');
     },
     deactivate() {
+        // Pastikan untuk menyembunyikan sub-playground yang aktif saat pindah chapter
         if (activeSubPlaygroundKey) {
             const oldSubData = subPlaygrounds[activeSubPlaygroundKey];
             if (oldSubData) {
@@ -67,8 +56,7 @@ export const VectorChapter = {
                 oldSubData.module.deactivate();
             }
         }
-        document.getElementById('sub-nav-vector').style.display = 'none';
-        activeSubPlaygroundKey = null;
+        activeSubPlaygroundKey = null; // Reset saat meninggalkan chapter
     },
     update(delta) {
         if (activeSubPlaygroundKey) {
